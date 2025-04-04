@@ -1,21 +1,19 @@
-import { Outlet } from "react-router-dom";
-import { useAuthUser } from "../store/authUser";
 import { useEffect } from "react";
+import { useAuthUser } from "../store/authUser";
+import { Outlet } from "react-router-dom";
 import Header from "../components/header";
 
-const MainLayout = () => {
+const MainLayoutProtect = () => {
   const { checkAuth, authUser } = useAuthUser();
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
   return (
-    <div data-theme="dark">
+    <div>
       {authUser && <Header />}
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
     </div>
   );
 };
 
-export default MainLayout;
+export default MainLayoutProtect;

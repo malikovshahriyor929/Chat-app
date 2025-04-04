@@ -3,6 +3,8 @@ import { NavigateFunction } from "react-router-dom";
 export interface useAuthUserType {
   authUser: AuthuserType | null;
   isLoginLoading: boolean;
+  isCheckLoading:boolean,
+  isRegisterLoading:boolean,
   signin: (data: formValueType, navigate: NavigateFunction) => Promise<void>;
   signup: (data: formValueType, navigate: NavigateFunction) => Promise<void>;
   checkAuth: () => Promise<void>;
@@ -22,4 +24,9 @@ export interface AuthuserType {
   profilePic: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ThemesType {
+    theme:string,
+    setTheme:(theme:string)=>void
 }

@@ -18,8 +18,8 @@ let navigate= useNavigate()
     signin(formValue,navigate);
   };
   return (
-    <div className="  mx-auto max-w-[1440px]">
-      <div className="grid grid-cols-2 h-full  ">
+    <div className=" h-full  mx-auto max-w-[1440px]">
+      <div className="grid grid-cols-2   ">
         <div className="flex w-[60%] mx-auto justify-center flex-col gap-5">
           <div className="flex flex-col items-center gap-3">
             <div className="text-primary bg-primary/10 rounded-lg p-2 ">

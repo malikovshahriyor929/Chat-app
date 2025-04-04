@@ -4,6 +4,8 @@ import SignIn from "../pages/signIn";
 import SignUp from "../pages/signUp";
 import MainLayout from "../layout";
 import ProtecRoute from "../components/protectRoute";
+import Setting from "../pages/setting";
+import Profile from "../pages/profile";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/setting",
+        element: <Setting />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

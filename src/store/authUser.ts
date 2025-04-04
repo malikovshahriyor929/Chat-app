@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 export let useAuthUser = create<useAuthUserType>((set) => ({
   authUser: null,
   isLoginLoading: false,
+  isCheckLoading: true,
+  isRegisterLoading: false,
 
   signin: async (data, navigate) => {
     set({ isLoginLoading: true });
@@ -32,7 +34,7 @@ export let useAuthUser = create<useAuthUserType>((set) => ({
     }
   },
   signup: async (data, navigate) => {
-    set({ isLoginLoading: true });
+    set({ isRegisterLoading: true });
     try {
       const res = await AxiosIntance.post("auth/sign-up", data);
       set({ authUser: res.data.data });
@@ -50,14 +52,18 @@ export let useAuthUser = create<useAuthUserType>((set) => ({
       }
       set({ authUser: null });
     } finally {
-      set({ isLoginLoading: false });
+      set({ isRegisterLoading: false });
     }
   },
   checkAuth: async () => {
+    set({ isCheckLoading: true });
     try {
       const res = await AxiosIntance.get("/auth/check");
-      set({ authUser: res.data.data });
       console.log(res);
+      
+      set({ authUser: res.data });
+      // set({ isCheckLoading: false });
+      console.log(res.data);
     } catch (error) {
       if (error instanceof AxiosError) {
         if (
@@ -69,6 +75,8 @@ export let useAuthUser = create<useAuthUserType>((set) => ({
         }
       }
       set({ authUser: null });
+    } finally {
+      set({ isCheckLoading: false });
     }
   },
 }));
