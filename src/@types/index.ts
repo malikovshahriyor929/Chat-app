@@ -5,9 +5,12 @@ export interface useAuthUserType {
   isLoginLoading: boolean;
   isCheckLoading:boolean,
   isRegisterLoading:boolean,
+  isProfileFotoLoading:boolean,
   signin: (data: formValueType, navigate: NavigateFunction) => Promise<void>;
   signup: (data: formValueType, navigate: NavigateFunction) => Promise<void>;
+  imageUpload: (data: formValueType) => Promise<void>;
   checkAuth: () => Promise<void>;
+  logOut: () => Promise<void>;
 }
 
 export interface formValueType {

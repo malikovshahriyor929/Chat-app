@@ -10,6 +10,7 @@ export let useAuthUser = create<useAuthUserType>((set) => ({
   isLoginLoading: false,
   isCheckLoading: true,
   isRegisterLoading: false,
+  isProfileFotoLoading: false,
 
   signin: async (data, navigate) => {
     set({ isLoginLoading: true });
@@ -56,14 +57,9 @@ export let useAuthUser = create<useAuthUserType>((set) => ({
     }
   },
   checkAuth: async () => {
-    set({ isCheckLoading: true });
     try {
       const res = await AxiosIntance.get("/auth/check");
-      console.log(res);
-      
       set({ authUser: res.data });
-      // set({ isCheckLoading: false });
-      console.log(res.data);
     } catch (error) {
       if (error instanceof AxiosError) {
         if (
@@ -77,6 +73,26 @@ export let useAuthUser = create<useAuthUserType>((set) => ({
       set({ authUser: null });
     } finally {
       set({ isCheckLoading: false });
+    }
+  },
+  logOut: async () => {},
+  imageUpload: async (data) => {
+    set({ isProfileFotoLoading: true });
+    try {
+      const res = await AxiosIntance.post("auth/update-photo", data);
+      set({ authUser: res.data.data});
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          toast.error(error.response.data.message);
+        }
+      }
+    } finally {
+      set({ isProfileFotoLoading: false });
     }
   },
 }));
