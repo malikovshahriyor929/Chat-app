@@ -75,12 +75,29 @@ export let useAuthUser = create<useAuthUserType>((set) => ({
       set({ isCheckLoading: false });
     }
   },
-  logOut: async () => {},
+  logOut: async () => {
+    try {
+      await AxiosIntance.post("auth/logout");
+      toast.success("you successfully log outed");
+      set({ authUser: null });
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          toast.error(error.response.data.message);
+        }
+      }
+      set({ authUser: null });
+    }
+  },
   imageUpload: async (data) => {
     set({ isProfileFotoLoading: true });
     try {
       const res = await AxiosIntance.post("auth/update-photo", data);
-      set({ authUser: res.data.data});
+      set({ authUser: res.data.data });
     } catch (error) {
       if (error instanceof AxiosError) {
         if (

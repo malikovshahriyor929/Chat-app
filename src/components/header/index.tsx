@@ -1,8 +1,10 @@
 import { LogOut, MessageSquare, Settings, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthUser } from "../../store/authUser";
 
 const Header = () => {
-  
+  const { logOut } = useAuthUser();
+  const navigate = useNavigate();
   return (
     <div
       className="bg-base-100 border-b border-base-300 sticky w-full top-0 z-40
@@ -30,7 +32,12 @@ const Header = () => {
               <p className=" font-medium">Settings</p>
             </div>
           </Link>
-          <div className="  flex items-center gap-2 text-base-content/60 transition-colors  ">
+          <div
+            onClick={() => {
+              logOut(), navigate("/sign-in");
+            }}
+            className="  flex items-center gap-2 text-base-content/60 transition-colors  "
+          >
             <LogOut size={20} />
             <p className=" font-medium">Log out</p>
           </div>
