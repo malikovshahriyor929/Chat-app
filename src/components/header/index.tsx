@@ -21,13 +21,13 @@ const Header = () => {
         </Link>
         <div className="flex items-center gap-2">
           <Link to={"/setting"}>
-            <div className="text-base-content/60  flex items-center gap-2 btn btn-sm transition-colors border-none ">
+            <div className="text-base-content/60  flex  cursor-pointer items-center gap-2 btn btn-sm transition-colors border-none ">
               <Settings size={20} />
               <p className=" font-medium">Settings</p>
             </div>
           </Link>
           <Link to={"/profile"}>
-            <div className="text-base-content/60  flex items-center gap-2 btn btn-sm transition-colors border-none ">
+            <div className="text-base-content/60  flex  cursor-pointer items-center gap-2 btn btn-sm transition-colors border-none ">
               <User size={20} />
               <p className=" font-medium">Settings</p>
             </div>
@@ -36,7 +36,7 @@ const Header = () => {
             onClick={() => {
               logOut(), navigate("/sign-in");
             }}
-            className="  flex items-center gap-2 text-base-content/60 transition-colors  "
+            className=" cursor-pointer  flex items-center gap-2 text-base-content/60 transition-colors  "
           >
             <LogOut size={20} />
             <p className=" font-medium">Log out</p>

@@ -32,4 +32,5 @@ export const THEMES = [
     "nord",
     "sunset",
   ];
+  export const defualtAvatar = "https://raw.githubusercontent.com/burakorkmez/fullstack-chat-app/refs/heads/master/frontend/public/avatar.png" 
   

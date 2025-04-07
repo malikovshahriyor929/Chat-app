@@ -1,5 +1,6 @@
 import { Camera, Mail, User } from "lucide-react";
 import { useAuthUser } from "../../store/authUser";
+import { defualtAvatar } from "../../utils";
 
 const Profile = () => {
   const { authUser, isProfileFotoLoading, imageUpload } = useAuthUser();
@@ -22,8 +23,8 @@ const Profile = () => {
           <div className="relative ">
             <img
               src={
-                authUser?.profilePic ||
-                "https://raw.githubusercontent.com/burakorkmez/fullstack-chat-app/refs/heads/master/frontend/public/avatar.png"
+                authUser?.profilePic || defualtAvatar
+                
               }
               alt="Profile image"
               className="size-32  rounded-full  object-cover object-center"

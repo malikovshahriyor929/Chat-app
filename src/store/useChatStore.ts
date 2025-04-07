@@ -1,0 +1,67 @@
+import { create } from "zustand";
+import { AuthuserType, messageType } from "../@types";
+import { AxiosIntance } from "../lib";
+import { AxiosError } from "axios";
+import toast from "react-hot-toast";
+
+interface useChatStoreType {
+  selectedUser: AuthuserType | null;
+  users: AuthuserType[] | null;
+  messages: messageType[];
+  usersLoading: boolean;
+  messageLoading: boolean;
+  setSelecteUser: (data: AuthuserType | null) => void;
+  getUsers: () => Promise<void>;
+  getMessages: (userId: string) => Promise<void>;
+  setMessages: (message: object) => Promise<void>;
+}
+
+export const useChatStore = create<useChatStoreType>((set, get) => ({
+  selectedUser: null,
+  users: null,
+  messages: [],
+  usersLoading: false,
+  messageLoading: false,
+  setSelecteUser(data) {
+    set({ selectedUser: data });
+  },
+  getUsers: async () => {
+    set({ usersLoading: true });
+    try {
+      const res = await AxiosIntance.get("message/users");
+      set({ users: res.data.data });
+    } catch (error) {
+      errorFN(error);
+    } finally {
+      set({ usersLoading: false });
+    }
+  },
+  getMessages: async (userId) => {
+    try {
+      const res = await AxiosIntance.get(`message/${userId}`);
+      set({ messages: res.data.data });
+    } catch (error) {
+      errorFN(error);
+    }
+  },
+  setMessages: async (message) => {
+    const { selectedUser, messages } = get();
+    try {
+      const res = await AxiosIntance.post(
+        `message/send/${selectedUser?._id}`,
+        message
+      );
+      set({ messages: [...messages, res.data.data] });
+    } catch (error) {
+      errorFN(error);
+    }
+  },
+}));
+
+function errorFN(error: any) {
+  if (error instanceof AxiosError) {
+    if (error.response && error.response.data && error.response.data.message) {
+      toast.error(error.response.data.message);
+    }
+  }
+}
