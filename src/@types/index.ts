@@ -1,4 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
+import { Socket } from "socket.io-client";
 
 export interface useAuthUserType {
   authUser: AuthuserType | null;
@@ -6,11 +7,15 @@ export interface useAuthUserType {
   isCheckLoading: boolean;
   isRegisterLoading: boolean;
   isProfileFotoLoading: boolean;
+  socket: Socket | null;
+  online_users: string[];
   signin: (data: formValueType, navigate: NavigateFunction) => Promise<void>;
   signup: (data: formValueType, navigate: NavigateFunction) => Promise<void>;
   imageUpload: (data: formValueType) => Promise<void>;
   checkAuth: () => Promise<void>;
   logOut: () => Promise<void>;
+  connectSocket: () => void;
+  disConnectSocket: () => void;
 }
 
 export interface formValueType {
@@ -41,5 +46,5 @@ export interface messageType {
   text: string;
   updatedAt: string;
   _id: string;
-  image?:string
+  image?: string;
 }

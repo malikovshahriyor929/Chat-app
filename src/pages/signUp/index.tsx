@@ -19,15 +19,15 @@ const SignUp = () => {
     signup(formValue, navigate);
   };
   return (
-    <div className="  mx-auto max-w-[1440px]">
-      <div className="grid grid-cols-2 h-full  ">
-        <div className="flex w-[60%] mx-auto justify-center flex-col gap-5">
+    <div className="  mx-auto  max-w-[1440px]">
+      <div className="grid grid-cols-2 max-[1024px]:grid-cols-1  h-full max-[1024px]:h-screen  ">
+        <div className="flex w-[60%] max-[560px]:w-[90%] mx-auto justify-center flex-col gap-5">
           <div className="flex flex-col items-center gap-3">
             <div className="text-primary bg-primary/10 rounded-lg p-2 ">
               <MessageSquare size={30} />
             </div>
-            <h2 className="text-2xl font-bold ">Create Account</h2>
-            <p className="text-xl text-base-content/60 font-medium   ">
+            <h2 className="text-2xl max-[400px]:text-xl font-bold ">Create Account</h2>
+            <p className="text-xl max-[400px]:text-[16px] text-base-content/60 font-medium   ">
               Get started with your free account
             </p>
           </div>

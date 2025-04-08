@@ -49,6 +49,7 @@ export const useChatStore = create<useChatStoreType>((set, get) => ({
   },
   setMessages: async (message) => {
     const { selectedUser, messages } = get();
+    
     try {
       const res = await AxiosIntance.post(
         `message/send/${selectedUser?._id}`,

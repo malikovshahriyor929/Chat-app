@@ -12,7 +12,7 @@ const MainLayout = () => {
     checkAuth();
   }, [checkAuth]);
   return (
-    <>
+    <main>
       <div data-theme={theme}>
         {authUser && <Header />}
         <main className={`${isCheckLoading ? "hidden" : "inline"}`}>
@@ -26,7 +26,7 @@ const MainLayout = () => {
       >
         <Loader className="animate-spin " />
       </div>
-    </>
+    </main>
   );
 };
 

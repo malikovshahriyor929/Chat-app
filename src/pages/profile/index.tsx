@@ -1,9 +1,10 @@
-import { Camera, Mail, User } from "lucide-react";
+import { Camera, Loader, Mail, User } from "lucide-react";
 import { useAuthUser } from "../../store/authUser";
 import { defualtAvatar } from "../../utils";
 
 const Profile = () => {
-  const { authUser, isProfileFotoLoading, imageUpload } = useAuthUser();
+  const { authUser, isProfileFotoLoading , imageUpload } =
+    useAuthUser();
   const hanfleImageUpload = (e: any) => {
     let file = e.target.files[0];
     const formdata: any = new FormData();
@@ -12,8 +13,8 @@ const Profile = () => {
   };
 
   return (
-    <div className="w-[90%]     mx-auto h-full max-w-[1440px]">
-      <div className="mt-5 bg-base-300 w-[60%] max-[810px]:w-full mx-auto  rounded-lg p-6 h-full  space-y-5">
+    <div className="w-[90%]  h-[calc(100vh-5.4rem)]    mx-auto  max-w-[1440px]">
+      <div className="mt-5 bg-base-300 w-[60%] max-[810px]:w-full mx-auto  rounded-lg p-6   space-y-5">
         <div className="text-center">
           <h1 className="text-2xl font-semibold ">Profile</h1>
           <p className="mt-2">Your profile information</p>
@@ -88,7 +89,9 @@ const Profile = () => {
           </div>
         </div>
         <div className="px-10 max-[510px]:px-3 mx-auto py-5 ">
-          <h1 className="text-2xl text-base-content/70 max-[340px]:text-xl">Account Information</h1>
+          <h1 className="text-2xl text-base-content/70 max-[340px]:text-xl">
+            Account Information
+          </h1>
           <div className="flex flex-col gap-3 mt-3">
             <div className="flex justify-between  text-base-content/60 ">
               <p className="text-lg max-[310px]:text-[16px]">Member Since</p>
