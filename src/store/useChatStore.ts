@@ -37,11 +37,14 @@ export const useChatStore = create<useChatStoreType>((set, get) => ({
     }
   },
   getMessages: async (userId) => {
+    set({ messageLoading: true });
     try {
       const res = await AxiosIntance.get(`message/${userId}`);
       set({ messages: res.data.data });
     } catch (error) {
       errorFN(error);
+    } finally {
+      set({ messageLoading: false });
     }
   },
   setMessages: async (message) => {

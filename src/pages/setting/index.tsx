@@ -19,18 +19,18 @@ const PREVIEW_MESSAGES: PREVIEW_MESSAGESType[] = [
 const Setting = () => {
   const { theme, setTheme } = Themes();
   return (
-    <div className="max-w-5xl mx-auto pt-10 h-full">
+    <div className="max-w-5xl max-[1200px]:w-[90%] mx-auto pt-10 h-full">
       <div className="flex flex-col gap-2">
         <h2 className="text-lg font-semibold">Theme</h2>
         <p className="text-sm text-base-content/70">
           Choose a theme for your chat interface
         </p>
       </div>
-      <div className="grid grid-cols-4 mt-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
+      <div className="grid  mt-4 max-[830px]:grid-cols-4 max-[830px]:gap-x-5 max-[530px]:grid-cols-3 max-[400px]:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr_1fr] max-[400px]:overflow-x-scroll max-[400px]:gap-x-2  grid-cols-8 gap-2">
         {THEMES.map((value) => (
           <button
             key={value}
-            className={`group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${
+            className={`group max-[400px]:w-[100px] flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors ${
               theme === value ? "bg-base-200" : "hover:bg-base-200/50"
             } `}
             onClick={() => setTheme(value)}
@@ -52,7 +52,7 @@ const Setting = () => {
       <div className="mt-8">
         <h3 className="text-lg font-medium mb-3 ">Preview</h3>
         <div className="border border-base-300 rounded-xl shadow-lg  bg-base-100 ">
-          <div className="p-4 bg-base-200 ">
+          <div className="p-4 bg-base-200 rounded-xl ">
             <div className="max-w-xl mx-auto">
               <div className="bg-base-100 rounded-lg shadow-sm ">
                 <div className="px-4 py-3 border border-base-300 bg-base-100">

@@ -21,7 +21,14 @@ const Selected = () => {
       messageref.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
-  if (messageLoading) return <MessageSkeleton />;
+  if (messageLoading)
+    return (
+      <div className="w-full flex flex-col">
+        <Selected_header />
+        <MessageSkeleton />;
+        <MessageInput />
+      </div>
+    );
   return (
     <div className="w-full h-full relative">
       <div className="s top-0 ">
@@ -33,17 +40,15 @@ const Selected = () => {
             key={value._id}
             // ref={messageref}
             className={`chat  px-4 ${
-              value.senderId === authUser?._id
-                ? "chat-end justify-end "
-                : "chat-start justify-start"
+              value.senderId === authUser?._id ? "chat-end" : "chat-start "
             } `}
           >
             <div className="chat-image avatar ">
               <div className="size-10 rounded-full border">
                 <img
                   src={
-                    value._id == authUser?._id
-                      ? authUser.profilePic || defualtAvatar
+                    value.senderId == authUser?._id
+                      ? authUser?.profilePic || defualtAvatar
                       : selectedUser?.profilePic || defualtAvatar
                   }
                   alt=""
@@ -64,7 +69,7 @@ const Selected = () => {
                   />
                 )}
               </div> */}
-              {value.text && <p>{value.text}</p>}
+              <p>{value.text}</p>
             </div>
           </div>
         ))}

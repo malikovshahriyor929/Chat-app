@@ -13,7 +13,7 @@ const Profile = () => {
 
   return (
     <div className="w-[90%]     mx-auto h-full max-w-[1440px]">
-      <div className="mt-5 bg-base-300 w-[60%] mx-auto  rounded-lg p-6 h-full  space-y-5">
+      <div className="mt-5 bg-base-300 w-[60%] max-[810px]:w-full mx-auto  rounded-lg p-6 h-full  space-y-5">
         <div className="text-center">
           <h1 className="text-2xl font-semibold ">Profile</h1>
           <p className="mt-2">Your profile information</p>
@@ -22,10 +22,7 @@ const Profile = () => {
         <div className="flex items-center flex-col   gap-4 w-full">
           <div className="relative ">
             <img
-              src={
-                authUser?.profilePic || defualtAvatar
-                
-              }
+              src={authUser?.profilePic || defualtAvatar}
               alt="Profile image"
               className="size-32  rounded-full  object-cover object-center"
             />
@@ -48,13 +45,13 @@ const Profile = () => {
               />
             </label>
           </div>
-          <div>
+          <div className="text-center max-[400px]:text-sm">
             <p className="text-base-content/70">
               Click the camera icon to update your photo
             </p>
           </div>
         </div>
-        <div className="space-y-3 px-10">
+        <div className="space-y-3 px-10 max-[510px]:px-3">
           <div className=" space-y-2 ">
             <label className="label flex">
               <User size={20} />
@@ -90,12 +87,12 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="px-10 mx-auto py-5 ">
-          <h1 className="text-2xl text-base-content/70">Account Information</h1>
+        <div className="px-10 max-[510px]:px-3 mx-auto py-5 ">
+          <h1 className="text-2xl text-base-content/70 max-[340px]:text-xl">Account Information</h1>
           <div className="flex flex-col gap-3 mt-3">
             <div className="flex justify-between  text-base-content/60 ">
-              <p className="text-lg">Member Since</p>
-              <p>
+              <p className="text-lg max-[310px]:text-[16px]">Member Since</p>
+              <p className="max-[310px]:text-[14px]">
                 {authUser?.createdAt
                   ? authUser?.createdAt.slice(0, 10)
                   : "0001-01-01"}
@@ -103,8 +100,8 @@ const Profile = () => {
             </div>
             <div className="h-0.5 w-full bg-base-content/70"></div>
             <div className="flex justify-between  text-base-content/60 ">
-              <p className="text-lg">Account Status</p>
-              <p className="text-green-600">Active</p>
+              <p className="text-lg max-[310px]:text-[16px]">Account Status</p>
+              <p className="text-green-600 max-[310px]:text-[14px]">Active</p>
             </div>
           </div>
         </div>
