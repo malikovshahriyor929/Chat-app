@@ -6,7 +6,7 @@ interface ProtectedRouteProps {
   children: ReactNode;
 }
 const ProtecRoute: FC<ProtectedRouteProps> = ({ children }) => {
-  let { authUser, isCheckLoading } = useAuthUser();
+  const { authUser, isCheckLoading } = useAuthUser();
   if (!authUser && !isCheckLoading) {
     return <Navigate to={"/sign-in"} />;
   }

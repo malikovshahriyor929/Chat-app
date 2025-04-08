@@ -6,16 +6,16 @@ import { formValueType } from "../../@types";
 import { useAuthUser } from "../../store/authUser";
 
 const SignIn = () => {
-  let [showEye, setShowEye] = useState<boolean>(false);
-  let [formValue, setFormValue] = useState<formValueType>({
+  const [showEye, setShowEye] = useState<boolean>(false);
+  const [formValue, setFormValue] = useState<formValueType>({
     email: "",
     password: "",
   });
-  let { isLoginLoading, signin } = useAuthUser();
-let navigate= useNavigate()
-  let HandeleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { isLoginLoading, signin } = useAuthUser();
+  const navigate = useNavigate();
+  const HandeleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    signin(formValue,navigate);
+    signin(formValue, navigate);
   };
   return (
     <div className=" h-full  mx-auto max-w-[1440px]">

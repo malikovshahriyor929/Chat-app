@@ -1,12 +1,11 @@
-import { Camera, Loader, Mail, User } from "lucide-react";
+import { Camera, Mail, User } from "lucide-react";
 import { useAuthUser } from "../../store/authUser";
 import { defualtAvatar } from "../../utils";
 
 const Profile = () => {
-  const { authUser, isProfileFotoLoading , imageUpload } =
-    useAuthUser();
-  const hanfleImageUpload = (e: any) => {
-    let file = e.target.files[0];
+  const { authUser, isProfileFotoLoading, imageUpload } = useAuthUser();
+  const hanfleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     const formdata: any = new FormData();
     formdata.append("image", file);
     imageUpload(formdata);

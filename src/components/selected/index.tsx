@@ -8,13 +8,25 @@ import MessageSkeleton from "../skeletons/messageSkeleton";
 import MessageInput from "./selected_input";
 
 const Selected = () => {
-  const { getMessages, messages, messageLoading, selectedUser } =
-    useChatStore();
+  const {
+    getMessages,
+    messages,
+    messageLoading,
+    selectedUser,
+    subscibeMessage,
+    unsubscibeMessage,
+  } = useChatStore();
   const { authUser } = useAuthUser();
   const messageref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    getMessages(selectedUser?._id!);
-  }, [getMessages, selectedUser?._id]);
+    if (!selectedUser || !selectedUser._id) return;
+
+    getMessages(selectedUser._id);
+    subscibeMessage();
+    return () => {
+      unsubscibeMessage();
+    };
+  }, [getMessages, selectedUser?._id, subscibeMessage]);
 
   useEffect(() => {
     if (messageref.current && messages) {
@@ -34,7 +46,7 @@ const Selected = () => {
       <div className="s top-0 ">
         <Selected_header />
       </div>
-      <div className="overflow-y-auto  h-full   space-y-4">
+      <div className="overflow-y-auto  h-full  pb-36  space-y-4">
         {messages?.map((value) => (
           <div
             key={value._id}
@@ -74,7 +86,7 @@ const Selected = () => {
           </div>
         ))}
       </div>
-      <div className="sticky bottom-0   ">
+      <div className="sticky bottom-0      ">
         <MessageInput />
       </div>
     </div>

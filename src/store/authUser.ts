@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
 // import toast from "hot"
-export let useAuthUser = create<useAuthUserType>((set, get) => ({
+export const useAuthUser = create<useAuthUserType>((set, get) => ({
   authUser: null,
   isLoginLoading: false,
   isCheckLoading: true,

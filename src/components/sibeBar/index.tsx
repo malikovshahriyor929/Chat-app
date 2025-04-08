@@ -39,11 +39,11 @@ const SideBar = () => {
             checked={checkbox}
             onChange={(e) => setCheckbox(e.target.checked)}
             type="checkbox"
-            className="checkbox checkbox-primary "
+            className="checkbox size-5 checkbox-primary "
           />
         </div>
       </div>
-      <div className="overflow-y-scroll h-[90%]   py-3 ">
+      <div className="overflow-y-scroll h-[90%] pb-5  py-3 ">
         {users?.map((value) => (
           <button
             key={value?._id}

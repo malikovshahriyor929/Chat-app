@@ -3,6 +3,7 @@ import { AuthuserType, messageType } from "../@types";
 import { AxiosIntance } from "../lib";
 import { AxiosError } from "axios";
 import toast from "react-hot-toast";
+import { useAuthUser } from "./authUser";
 
 interface useChatStoreType {
   selectedUser: AuthuserType | null;
@@ -14,6 +15,8 @@ interface useChatStoreType {
   getUsers: () => Promise<void>;
   getMessages: (userId: string) => Promise<void>;
   setMessages: (message: object) => Promise<void>;
+  subscibeMessage: () => void;
+  unsubscibeMessage: () => void;
 }
 
 export const useChatStore = create<useChatStoreType>((set, get) => ({
@@ -49,7 +52,7 @@ export const useChatStore = create<useChatStoreType>((set, get) => ({
   },
   setMessages: async (message) => {
     const { selectedUser, messages } = get();
-    
+
     try {
       const res = await AxiosIntance.post(
         `message/send/${selectedUser?._id}`,
@@ -59,6 +62,20 @@ export const useChatStore = create<useChatStoreType>((set, get) => ({
     } catch (error) {
       errorFN(error);
     }
+  },
+  subscibeMessage: () => {
+    const { selectedUser } = get();
+    if (!selectedUser) return;
+    const socket = useAuthUser.getState().socket;
+    socket?.on("newMessage", (newMessage: messageType) => {
+      const messageForSelecedUser = newMessage.senderId == selectedUser._id;
+      if (!messageForSelecedUser) return;
+      set({ messages: [...(get().messages as messageType[] ), newMessage] });
+    });
+  },
+  unsubscibeMessage() {
+    const socket = useAuthUser.getState().socket
+    socket?.off("newMessage")
   },
 }));
 
