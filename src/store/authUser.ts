@@ -5,7 +5,6 @@ import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
-// import toast from "hot"
 export const useAuthUser = create<useAuthUserType>((set, get) => ({
   authUser: null,
   isLoginLoading: false,
